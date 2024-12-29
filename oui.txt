@@ -15,6 +15,9 @@ B0:5B:99 Sagemcom Broadband SAS
 E8:0A:B9 Cisco Systems, Inc
 78:46:5F Fiberhome Telecommunication Technologies Co.,LTD
 90:75:DE Zebra Technologies Inc.
+66:20:E1 True Router (TH)
+76:3F:ED Samsung Phone
+F6:02:28 Samsung Phone
 80:BA:16 Micas Networks Inc.
 10:E9:92 INGRAM MICRO SERVICES
 78:F2:76 Cyklop Fastjet Technologies (Shanghai) Inc.
