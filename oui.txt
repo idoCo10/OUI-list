@@ -16,12 +16,15 @@ E8:0A:B9 Cisco Systems, Inc
 78:46:5F Fiberhome Telecommunication Technologies Co.,LTD
 90:75:DE Zebra Technologies Inc.
 66:20:E1 True Router (TH)
+66:20:E3 True Router (TH)
 76:3F:ED Samsung Phone
 F6:02:28 Samsung Phone
+CE:C4:68 Samsung Phone (Randomized MAC)
 E2:16:63 Samsung Phone (Randomized MAC)
 42:4D:E4 Apple, Inc. (Randomized MAC)
 9E:2E:69 Apple, Inc. (Randomized MAC)
 52:2F:63 Apple, Inc. (Randomized MAC)
+BE:66:62 Apple, Inc. (Randomized MAC)
 80:BA:16 Micas Networks Inc.
 10:E9:92 INGRAM MICRO SERVICES
 78:F2:76 Cyklop Fastjet Technologies (Shanghai) Inc.
