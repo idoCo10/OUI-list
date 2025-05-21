@@ -30590,6 +30590,7 @@ A8:6E:4E Huawei Device Co., Ltd.
 C4:0B:31 Apple, Inc.
 8C:7A:15 Ruckus Wireless
 64:20:E0 T3 Technology Co., Ltd.
+64:20:E3 T3 Technology Co., Ltd.
 84:11:C2 IEEE Registration Authority
 90:DE:80 Shenzhen Century Xinyang Technology Co., Ltd
 10:96:93 Amazon Technologies Inc.
