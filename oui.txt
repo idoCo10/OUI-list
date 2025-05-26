@@ -26,6 +26,8 @@ BE:D6:E7 Samsung Phone (Randomized MAC)
 9E:2E:69 Apple, Inc. (Randomized MAC)
 52:2F:63 Apple, Inc. (Randomized MAC)
 BE:66:62 Apple, Inc. (Randomized MAC)
+96:9D:1B Philips TV (Randomized MAC)
+9A:9B:C2 SHARP TV (Randomized MAC)
 80:BA:16 Micas Networks Inc.
 10:E9:92 INGRAM MICRO SERVICES
 78:F2:76 Cyklop Fastjet Technologies (Shanghai) Inc.
