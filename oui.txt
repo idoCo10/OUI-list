@@ -20,6 +20,7 @@ E8:0A:B9 Cisco Systems, Inc
 76:3F:ED Samsung Phone
 F6:02:28 Samsung Phone
 CE:C4:68 Samsung Phone (Randomized MAC)
+9A:28:7D Samsung Phone (Randomized MAC)
 E2:16:63 Samsung Phone (Randomized MAC)
 BE:D6:E7 Samsung Phone (Randomized MAC)
 42:4D:E4 Apple, Inc. (Randomized MAC)
@@ -36686,3 +36687,4 @@ D4:E4:C3 Ciena Corporation
 54:26:3D Sony Corporation
 54:80:8A PT. BIZLINK TECHNOLOGY INDONESIA
 F8:38:8D New H3C Technologies Co., Ltd
+
