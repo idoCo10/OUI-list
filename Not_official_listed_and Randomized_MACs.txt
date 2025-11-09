@@ -1,0 +1,14 @@
+66:20:E1 T3 Technology Co., Ltd. (True Router) (TH)
+66:20:E3 T3 Technology Co., Ltd. (True Router) (TH)
+76:3F:ED Samsung Phone
+F6:02:28 Samsung Phone
+CE:C4:68 Samsung Phone (Randomized MAC)
+9A:28:7D Samsung Phone (Randomized MAC)
+E2:16:63 Samsung Phone (Randomized MAC)
+BE:D6:E7 Samsung Phone (Randomized MAC)
+42:4D:E4 Apple, Inc. (Randomized MAC)
+9E:2E:69 Apple, Inc. (Randomized MAC)
+52:2F:63 Apple, Inc. (Randomized MAC)
+BE:66:62 Apple, Inc. (Randomized MAC)
+96:9D:1B Philips TV (Randomized MAC)
+9A:9B:C2 SHARP TV (Randomized MAC)
