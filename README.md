@@ -12,8 +12,7 @@ This repository contains a **cleaned and sorted OUI (Organizationally Unique Ide
 - **Company name**  
 - **Country code** in parentheses  
 
-Example entries:
-70:02:58 01DB-METRAVIB (FR)
+## 📌 Example OUI Entries70:02:58 01DB-METRAVIB (FR)
 C4:93:13 100fio networks technology llc (US)
 08:00:24 10NET COMMUNICATIONS/DCA (US)
 00:0B:10 11wave Technonlogy Co.,Ltd (TW)
