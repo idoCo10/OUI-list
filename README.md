@@ -13,10 +13,6 @@ This repository contains a **cleaned and sorted OUI (Organizationally Unique Ide
 - **Country code** in parentheses  
 
 Example entries:
-
-==============================
-Update Date: 09/11/2025 18:17
-==============================
 70:02:58 01DB-METRAVIB (FR)
 C4:93:13 100fio networks technology llc (US)
 08:00:24 10NET COMMUNICATIONS/DCA (US)
@@ -44,36 +40,3 @@ You can use `oui.txt` in your projects freely — it is ideal for **network anal
 4. **Creates a clean `oui.txt`** file.  
 5. **Sorts** the combined OUI list by company name and creates `oui-sorted.txt` with an update timestamp at the top.
 
----
-
-### How to Use
-
-1. Make the script executable:
-
-```bash
-chmod +x Update_OUI_from_iEEE.sh
-./Update_OUI_from_iEEE.sh
-
-Follow the menu options:
-
-Option 1: Download and process the IEEE OUI + extra OUIs, then sort automatically.
-
-Option 2: Sort an existing oui.txt file.
-
-After running, you will have:
-
-oui.txt — combined cleaned OUI list
-
-oui-sorted.txt — same list, sorted by company name, with an update header
-
-Example Usage in Projects
-
-You can use oui-sorted.txt for:
-
-MAC address lookup
-
-Network device identification
-
-Security auditing or penetration testing
-
-Any project requiring mapping of MAC prefixes to companies
