@@ -10,21 +10,8 @@ This repository contains a **cleaned and sorted OUI (Organizationally Unique Ide
 
 - **MAC prefix** in `XX:XX:XX` format  
 - **Company name**  
-- **Country code** in parentheses  
-
-## 📌 Example OUI Entries
-70:02:58 01DB-METRAVIB (FR)
-
-C4:93:13 100fio networks technology llc (US)
-
-08:00:24 10NET COMMUNICATIONS/DCA (US)
-
-00:0B:10 11wave Technonlogy Co.,Ltd (TW)
-3C:40:15 12mm Health Technology (Hainan) Co., Ltd. (CN)
-A8:5E:E4 12Sided Technology, LLC (US)
-00:50:29 1394 PRINTER WORKING GROUP (US)
-00:A0:2D 1394 Trade Association (US)
-...
+- **Country code** in parentheses
+- for example: 04:2E:C1 Apple, Inc. (US)
 
 
 This file is **sorted by company name** and includes both the official IEEE OUI list and additional OUIs from custom sources. The **update date** is included at the top of the file.
@@ -40,6 +27,7 @@ You can use `oui.txt` in your projects freely — it is ideal for **network anal
 1. **Downloads** the latest IEEE OUI database.  
 2. **Processes** it to extract MAC prefixes, company names, and country codes.  
 3. **Downloads extra OUIs** from a custom source and appends them to the list.  
-4. **Creates a clean `oui.txt`** file.  
-5. **Sorts** the combined OUI list by company name and creates `oui-sorted.txt` with an update timestamp at the top.
+4. **Sorts** the combined OUI list by company name.
+5. **Creates a clean `oui.txt`** file with an update timestamp at the top.  
+
 
