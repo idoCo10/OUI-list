@@ -3,13 +3,17 @@
 DESKTOP=~/Desktop
 cd "$DESKTOP" || exit
 
-menu() {
-    echo -e "\nSelect an option:"
-    echo "1: Download updated OUI from IEEE + Extra OUIs, create clean sorted oui.txt"
-    echo "2: Sort existing oui.txt"
-    echo "0: Exit"
-    read -rp "Enter choice: " choice
-}
+
+
+# --- Check if oui.txt exists and count old OUIs ---
+if [[ -f oui.txt ]]; then
+    old_oui_count=$(tail -n +5 oui.txt | grep -v '^[[:space:]]*$' | wc -l)
+fi
+
+
+
+echo -e "\nDownloading updated OUI from IEEE + Extra OUIs + sorting the file by company names.\n\n"
+
 
 process_oui() {
     echo -e "\nDownloading IEEE OUI database..."
@@ -65,20 +69,26 @@ sort_oui() {
     {
         echo "=============================="
         echo "Update Date: $DATE_NOW"
+        echo "Sorted by company name."
         echo "=============================="
-        sort -k2 -f oui.txt
+        grep -v '^===' oui.txt | sort -k2 -f
     } > oui-sorted.txt
 
     mv oui-sorted.txt oui.txt
-    echo "Done!"    
+    echo "Removing raw files.."
+    rm oui_raw.txt Extra_OUIs.txt
+    
+    oui_count=$(tail -n +5 oui.txt | grep -v '^[[:space:]]*$' | wc -l)
+    echo -e "\n\nNumber of OUIs in the updated file: $oui_count"
+    
+    if [[ $old_oui_count -gt 0 ]]; then
+        echo -e "\nNumber of OUIs before the update: $old_oui_count"
+    fi    
+
+    echo -e "\n\nDone!"    
 }
 
+process_oui
+sort_oui
 
-menu
-case "$choice" in
-    1) process_oui ;;
-    2) sort_oui ;;
-    0) echo "Exiting..."; exit ;;
-    *) echo "Invalid choice." ;;
-esac
 
