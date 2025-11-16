@@ -49,7 +49,7 @@ process_oui() {
     echo -e "\nDownloading Extra_OUIs.txt..."
     wget -O Extra_OUIs.txt https://raw.githubusercontent.com/idoCo10/OUI-list-2025/main/Extra_OUIs.txt
 
-    echo "Appending Extra_OUIs.txt to oui.txt..."
+    echo -e "\n\nAppending Extra_OUIs.txt to oui.txt..."
     cat Extra_OUIs.txt >> oui.txt
 
     # automatically sort with header
@@ -62,16 +62,16 @@ sort_oui() {
         return
     fi
 
-    echo -e "\nSorting oui.txt by company name..."
+    echo -e "Sorting oui.txt by MAC prefix..."
     DATE_NOW=$(date "+%d/%m/%Y %H:%M")
 
     # sort and prepend header
     {
         echo "=============================="
         echo "Update Date: $DATE_NOW"
-        echo "Sorted by company name."
+        echo "Sorted by MAC prefix."
         echo "=============================="
-        grep -v '^===' oui.txt | sort -k2 -f
+        grep -v '^===' oui.txt | sort -u -k1,1 -k2 -f
     } > oui-sorted.txt
 
     mv oui-sorted.txt oui.txt
@@ -89,6 +89,5 @@ sort_oui() {
 }
 
 process_oui
-sort_oui
 
 
