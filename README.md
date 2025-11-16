@@ -27,7 +27,7 @@ You can use `oui.txt` in your projects freely — it is ideal for **network anal
 1. **Downloads** the latest IEEE OUI database.  
 2. **Processes** it to extract MAC prefixes, company names, and country codes.  
 3. **Downloads extra OUIs** from a custom source and appends them to the list.  
-4. **Sorts** the combined OUI list by company name.
+4. **Sorts** the combined OUI list by MAC prefix.
 5. **Creates a clean `oui.txt`** file with an update timestamp at the top.  
 
 
