@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 
+# version 1.0 | 17/11/25
+
+
 DESKTOP=~/Desktop
 cd "$DESKTOP" || exit
 
-
-
-# --- Check if oui.txt exists and count old OUIs ---
+# --- Save old oui.txt if exists ---
 if [[ -f oui.txt ]]; then
     old_oui_count=$(tail -n +5 oui.txt | grep -v '^[[:space:]]*$' | wc -l)
+    cp oui.txt old_oui.txt
 fi
 
-
-
 echo -e "\nDownloading updated OUI from IEEE + Extra OUIs + sorting the file by company names.\n\n"
-
 
 process_oui() {
     echo -e "\nDownloading IEEE OUI database..."
@@ -58,36 +57,52 @@ process_oui() {
 
 sort_oui() {
     if [[ ! -f oui.txt ]]; then
-        echo "oui.txt not found! Please run option 1 first."
+        echo "oui.txt not found! Please run process_oui first."
         return
     fi
 
     echo -e "Sorting oui.txt by MAC prefix..."
     DATE_NOW=$(date "+%d/%m/%Y %H:%M")
 
-    # sort and prepend header
     {
         echo "=============================="
         echo "Update Date: $DATE_NOW"
         echo "Sorted by MAC prefix."
         echo "=============================="
-        grep -v '^===' oui.txt | sort -u -k1,1 -k2 -f
+        grep -v '^===' oui.txt | grep -v '^[[:space:]]*$' | sort -u -k1,1 -k2 -f
     } > oui-sorted.txt
 
     mv oui-sorted.txt oui.txt
-    echo "Removing raw files.."
+    echo "Removing raw files..."
     rm oui_raw.txt Extra_OUIs.txt
-    
-    oui_count=$(tail -n +5 oui.txt | grep -v '^[[:space:]]*$' | wc -l)
-    echo -e "\n\nNumber of OUIs in the updated file: $oui_count"
-    
-    if [[ $old_oui_count -gt 0 ]]; then
-        echo -e "\nNumber of OUIs before the update: $old_oui_count"
-    fi    
 
-    echo -e "\n\nDone!"    
+    oui_count=$(tail -n +5 oui.txt | grep -v '^[[:space:]]*$' | wc -l)
+    echo -e "\nNumber of OUIs in the updated file ($DATE_NOW): $oui_count"
+
+    if [[ $old_oui_count -gt 0 ]]; then
+        # Extract old update date without the "Update Date: " prefix
+        old_date=$(sed -n '2p' old_oui.txt | sed 's/^Update Date: //')
+
+        echo -e "Number of OUIs before the update (${old_date}): $old_oui_count"
+    
+        # Get new lines added
+        new_ouis=$(comm -13 <(tail -n +5 old_oui.txt | grep -v '^[[:space:]]*$' | sort) \
+                        <(tail -n +5 oui.txt | grep -v '^[[:space:]]*$' | sort))
+
+        # Only show if there are new OUIs
+        if [[ -n "$new_ouis" ]]; then
+            echo -e "\nNew OUIs added in this update:"
+            echo "$new_ouis"
+    fi
+
+    # remove the temporary old file
+    rm old_oui.txt
+fi
+
+
+
+
+    echo -e "\nDone!"
 }
 
 process_oui
-
-
