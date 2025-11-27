@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-# version 1.0 | 17/11/25
+# version 1.1 | 28/11/25
 
-
-DESKTOP=~/Desktop
+DESKTOP="$HOME/Desktop"
 cd "$DESKTOP" || exit
 
 # --- Save old oui.txt if exists ---
@@ -12,11 +11,11 @@ if [[ -f oui.txt ]]; then
     cp oui.txt old_oui.txt
 fi
 
-echo -e "\nDownloading updated OUI from IEEE + Extra OUIs + sorting the file by company names.\n\n"
+echo -e "\nDownloading updated OUI from IEEE + Extra OUIs + sorting the file by MAC prefix.\n\n"
 
 process_oui() {
     echo -e "\nDownloading IEEE OUI database..."
-    wget -O oui_raw.txt https://standards-oui.ieee.org/oui/oui.txt
+    wget -O oui_raw.txt https://standards-oui.ieee.org/oui/oui.txt || exit
 
     echo "Processing ieee oui_raw.txt to create oui.txt..."
     awk '
@@ -63,11 +62,13 @@ sort_oui() {
 
     echo -e "Sorting oui.txt by MAC prefix..."
     DATE_NOW=$(date "+%d/%m/%Y %H:%M")
+    oui_count=$(grep -v '^===' oui.txt | grep -v '^[[:space:]]*$' | sort -u | wc -l)
+
 
     {
         echo "=============================="
         echo "Update Date: $DATE_NOW"
-        echo "Sorted by MAC prefix."
+        echo "Total Records: $oui_count."
         echo "=============================="
         grep -v '^===' oui.txt | grep -v '^[[:space:]]*$' | sort -u -k1,1 -k2 -f
     } > oui-sorted.txt
@@ -76,7 +77,7 @@ sort_oui() {
     echo "Removing raw files..."
     rm oui_raw.txt Extra_OUIs.txt
 
-    oui_count=$(tail -n +5 oui.txt | grep -v '^[[:space:]]*$' | wc -l)
+    
     echo -e "\nNumber of OUIs in the updated file ($DATE_NOW): $oui_count"
 
     if [[ $old_oui_count -gt 0 ]]; then
@@ -85,11 +86,10 @@ sort_oui() {
 
         echo -e "Number of OUIs before the update (${old_date}): $old_oui_count"
     
-        # Get new lines added
-        new_ouis=$(comm -13 <(tail -n +5 old_oui.txt | grep -v '^[[:space:]]*$' | sort) \
-                        <(tail -n +5 oui.txt | grep -v '^[[:space:]]*$' | sort))
+        new_ouis=$(comm -23 <(tail -n +5 oui.txt | grep -v '^[[:space:]]*$' | sort) \
+                <(tail -n +5 old_oui.txt | grep -v '^[[:space:]]*$' | sort))
 
-        # Only show if there are new OUIs
+
         if [[ -n "$new_ouis" ]]; then
             echo -e "\nNew OUIs added in this update:"
             echo "$new_ouis"
@@ -97,14 +97,32 @@ sort_oui() {
             echo -e "\nNo OUI was added to IEEE since your last update.\n"
         fi
 
-    # remove the temporary old file
-    rm old_oui.txt
-fi
-
-
-
+        rm old_oui.txt
+    fi
 
     echo -e "\nDone!"
 }
 
 process_oui
+
+# --- Ask user if they want to upload to GitHub ---
+echo -e "\nDo you want to upload the updated oui.txt to GitHub? (Y/n): "
+read -r upload_choice
+
+if [[ -z "$upload_choice" || "$upload_choice" == "y" || "$upload_choice" == "Y" ]]; then
+    USERHOME="$HOME"
+    USERNAME="$(whoami)"
+
+    echo -e "\nUploading to GitHub as user: $USERNAME\n"
+
+    cd "$USERHOME/OUI-list" || exit
+    cp "$USERHOME/Desktop/oui.txt" "$USERHOME/OUI-list/oui.txt"
+
+    git add oui.txt
+    git commit -m "Updated oui.txt"
+    git push origin main
+
+    echo -e "\nUpload completed!"
+else
+    echo -e "\nSkipped uploading to GitHub."
+fi
