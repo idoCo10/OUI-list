@@ -1,7 +1,6 @@
 ==============================
-Update Date: 28/11/2025 00:22
-Total records: 38347
-Sorted by MAC prefix.
+Update Date: 28/11/2025 00:47
+Total Records: 38347.
 ==============================
 00:00:00 XEROX CORPORATION (US)
 00:00:01 XEROX CORPORATION (US)
